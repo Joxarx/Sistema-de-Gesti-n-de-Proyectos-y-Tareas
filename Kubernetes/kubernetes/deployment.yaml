@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: project-management-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: project-management-app
+  template:
+    metadata:
+      labels:
+        app: project-management-app
+    spec:
+      containers:
+        - name: project-service
+          image: project-service:latest
+          ports:
+            - containerPort: 5000
+        - name: task-service
+          image: task-service:latest
+          ports:
+            - containerPort: 5001
+        - name: collaboration-service
+          image: collaboration-service:latest
+          ports:
+            - containerPort: 5002
+        - name: integration-service
+          image: integration-service:latest
+          ports:
+            - containerPort: 5003
